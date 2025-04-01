@@ -1,0 +1,30 @@
+@startuml
+
+class Alumno{
+ - nombre: String;
+ - materias_aprobadas: List<Materia>;
+
+ + puedeCursar(materia: Materia): boolean;
+}
+
+class Materia{
+ - nombre: Materia;
+ - correlativas: List<Materia>;
+
+ + agregarCorrelativa(correlativa: Materia): void;
+ + cumpleCorrelativas(materias_cursadas: List<Materia>): boolean;
+}
+
+class Inscripcion{
+ - alumno: Alumno;
+ - materias_inscripcion: List<Materia>;
+
+ + agregarMateria(materia: Materia): void;
+ + aprobada(): boolean;
+}
+
+Alumno --> "*" Materia
+Inscripcion --> Alumno
+Inscripcion --> "*" Materia
+Materia --> "*" Materia
+@enduml
